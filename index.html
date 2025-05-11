@@ -16,23 +16,23 @@
     header {
       background-color: #FFFFFF;
       color: black;
-      padding: 10px;
+      padding: 20px;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      flex-direction: row-reverse; /* لوگو را در سمت راست قرار می‌دهد */
+      justify-content: center;
     }
 
     header img {
-      width: 150px; /* بزرگ‌تر کردن لوگو */
-      vertical-align: middle;
+      width: 150px;
+      margin-bottom: 10px;
     }
 
     header h1 {
       font-size: 24px;
       font-weight: bold;
-      margin-right: 10px;
-      vertical-align: middle;
+      text-align: center;
+      margin: 0;
     }
 
     main {
@@ -95,29 +95,13 @@
       color: #004466;
       font-weight: bold;
     }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 18px;
-        margin-right: 0;
-      }
-
-      header img {
-        width: 120px;
-      }
-
-      header {
-        flex-direction: column; /* در موبایل، لوگو و عنوان به صورت عمودی چیده می‌شوند */
-        text-align: center;
-      }
-    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Afghan Help</h1>
     <img src="logo.png" alt="Logo" class="logo">
+    <h1>Afghan Help</h1>
   </header>
 
   <main>
@@ -149,7 +133,6 @@
       document.getElementById('error').style.display = 'none';
       document.getElementById('loadingScreen').style.display = 'block';
 
-      // تأخیر ۳ ثانیه قبل از بررسی داده‌ها
       setTimeout(() => {
         fetch('data.json')
           .then(response => response.json())
@@ -176,7 +159,7 @@
             document.getElementById('loadingScreen').style.display = 'none';
             console.error('Error loading data.json:', err);
           });
-      }, 3000); // ۳۰۰۰ میلی‌ثانیه = ۳ ثانیه
+      }, 3000);
     });
   </script>
 
