@@ -14,10 +14,13 @@
     }
 
     header {
-      background-color: #8B0000;
-      color: white;
+      background-color: #FFFFFF;
+      color: black;
       padding: 10px;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row-reverse; /* لوگو را در سمت راست قرار می‌دهد */
     }
 
     header img {
@@ -25,10 +28,10 @@
       vertical-align: middle;
     }
 
-    header span {
+    header h1 {
       font-size: 24px;
       font-weight: bold;
-      margin-left: 10px;
+      margin-right: 10px;
       vertical-align: middle;
     }
 
@@ -94,9 +97,18 @@
     }
 
     @media (max-width: 600px) {
-      header span {
-        display: block;
-        margin-top: 10px;
+      header h1 {
+        font-size: 18px;
+        margin-right: 0;
+      }
+
+      header img {
+        width: 120px;
+      }
+
+      header {
+        flex-direction: column; /* در موبایل، لوگو و عنوان به صورت عمودی چیده می‌شوند */
+        text-align: center;
       }
     }
   </style>
@@ -104,8 +116,8 @@
 <body>
 
   <header>
-    <img src="logo.png" alt="Logo" class="logo">
     <h1>Afghan Help</h1>
+    <img src="logo.png" alt="Logo" class="logo">
   </header>
 
   <main>
@@ -119,7 +131,7 @@
       <p id="error">Incorrect information entered!</p>
     </form>
     <div id="loadingScreen">
-      <img src="loading.gif" alt="Loading...">
+      <img src="Loading.gif" alt="Loading...">
     </div>
   </main>
 
