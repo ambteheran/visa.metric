@@ -70,7 +70,7 @@
       display: none;
     }
 
-    /* Loading screen style */
+    /* فقط هنگام فشار دکمه نمایش داده می‌شود */
     #loadingScreen {
       display: none;
       position: fixed;
@@ -78,12 +78,10 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 0.7); /* رنگ پس‌زمینه سفید و نیمه‌شفاف */
+      background-color: white;
       z-index: 9999;
       justify-content: center;
       align-items: center;
-      display: flex;
-      text-align: center;
     }
 
     #loadingScreen img {
@@ -130,7 +128,7 @@
     </form>
   </main>
 
-  <!-- Loading Screen -->
+  <!-- فقط هنگام کلیک فعال می‌شود -->
   <div id="loadingScreen">
     <img src="Loading.gif" alt="Loading...">
   </div>
@@ -147,7 +145,7 @@
     document.getElementById('verifyForm').addEventListener('submit', function (e) {
       e.preventDefault();
       document.getElementById('error').style.display = 'none';
-      document.getElementById('loadingScreen').style.display = 'flex'; // نمایش صفحه بارگذاری
+      document.getElementById('loadingScreen').style.display = 'flex';
 
       setTimeout(() => {
         fetch('data.json')
@@ -158,7 +156,7 @@
             const dob = document.getElementById('dob').value.trim();
             const clientno = document.getElementById('clientno').value.trim();
 
-            document.getElementById('loadingScreen').style.display = 'none'; // مخفی کردن صفحه بارگذاری بعد از ۳ ثانیه
+            document.getElementById('loadingScreen').style.display = 'none';
 
             if (
               name === data.name &&
@@ -175,7 +173,7 @@
             document.getElementById('loadingScreen').style.display = 'none';
             console.error('Error loading data.json:', err);
           });
-      }, 3000); // ۳۰۰۰ میلی‌ثانیه = ۳ ثانیه
+      }, 3000);
     });
   </script>
 
