@@ -11,7 +11,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      background-color: #f1f1f1; /* رنگ پس‌زمینه پیش‌فرض */
+      background-color: #f1f1f1;
     }
 
     header {
@@ -78,8 +78,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(255, 255, 255, 1); /* پس‌زمینه سفید */
-      z-index: 9999; /* To make sure it's on top of everything */
+      background-color: rgba(255, 255, 255, 0.7); /* رنگ پس‌زمینه سفید و نیمه‌شفاف */
+      z-index: 9999;
       justify-content: center;
       align-items: center;
       display: flex;
@@ -149,9 +149,6 @@
       document.getElementById('error').style.display = 'none';
       document.getElementById('loadingScreen').style.display = 'flex'; // نمایش صفحه بارگذاری
 
-      // تغییر پس‌زمینه به سفید
-      document.body.style.backgroundColor = "#ffffff";
-
       setTimeout(() => {
         fetch('data.json')
           .then(response => response.json())
@@ -161,8 +158,7 @@
             const dob = document.getElementById('dob').value.trim();
             const clientno = document.getElementById('clientno').value.trim();
 
-            document.getElementById('loadingScreen').style.display = 'none'; // مخفی کردن صفحه بارگذاری
-            document.body.style.backgroundColor = "#f1f1f1"; // بازگرداندن رنگ پس‌زمینه اصلی
+            document.getElementById('loadingScreen').style.display = 'none'; // مخفی کردن صفحه بارگذاری بعد از ۳ ثانیه
 
             if (
               name === data.name &&
@@ -177,10 +173,9 @@
           })
           .catch(err => {
             document.getElementById('loadingScreen').style.display = 'none';
-            document.body.style.backgroundColor = "#f1f1f1"; // بازگرداندن رنگ پس‌زمینه در صورت خطا
             console.error('Error loading data.json:', err);
           });
-      }, 3000);
+      }, 3000); // ۳۰۰۰ میلی‌ثانیه = ۳ ثانیه
     });
   </script>
 
