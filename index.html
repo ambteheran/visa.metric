@@ -69,15 +69,25 @@
       display: none;
     }
 
+    /* Loading screen style */
     #loadingScreen {
       display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+      z-index: 9999; /* To make sure it's on top of everything */
+      justify-content: center;
+      align-items: center;
+      display: flex;
       text-align: center;
-      margin-top: 20px;
     }
 
     #loadingScreen img {
-      width: 50px;
-      height: 50px;
+      width: 100px;
+      height: 100px;
     }
 
     footer {
@@ -117,10 +127,12 @@
       <button type="submit">Tracking</button>
       <p id="error">Incorrect information entered!</p>
     </form>
-    <div id="loadingScreen">
-      <img src="Loading.gif" alt="Loading...">
-    </div>
   </main>
+
+  <!-- Loading Screen -->
+  <div id="loadingScreen">
+    <img src="Loading.gif" alt="Loading...">
+  </div>
 
   <footer>
     <div class="social">
@@ -134,7 +146,7 @@
     document.getElementById('verifyForm').addEventListener('submit', function (e) {
       e.preventDefault();
       document.getElementById('error').style.display = 'none';
-      document.getElementById('loadingScreen').style.display = 'block';
+      document.getElementById('loadingScreen').style.display = 'flex'; // نمایش صفحه بارگذاری
 
       setTimeout(() => {
         fetch('data.json')
@@ -145,7 +157,7 @@
             const dob = document.getElementById('dob').value.trim();
             const clientno = document.getElementById('clientno').value.trim();
 
-            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('loadingScreen').style.display = 'none'; // مخفی کردن صفحه بارگذاری
 
             if (
               name === data.name &&
