@@ -22,6 +22,7 @@
 
     header img {
       width: 150px;
+      max-width: 80%;
       display: block;
       margin: 0 auto;
     }
@@ -42,13 +43,17 @@
     }
 
     form {
-      max-width: 400px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       width: 100%;
+      max-width: 400px;
     }
 
     input, button {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 8px 0;
       box-sizing: border-box;
       font-size: 16px;
@@ -58,6 +63,7 @@
       background-color: #004466;
       color: white;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
     }
 
@@ -68,16 +74,17 @@
     #error {
       color: red;
       display: none;
+      font-weight: bold;
+      text-align: center;
     }
 
-    /* فقط هنگام فشار دکمه نمایش داده می‌شود */
     #loadingScreen {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       background-color: white;
       z-index: 9999;
       justify-content: center;
@@ -85,8 +92,8 @@
     }
 
     #loadingScreen img {
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
     }
 
     footer {
@@ -102,9 +109,23 @@
       font-weight: bold;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 480px) {
       header h1 {
-        font-size: 20px;
+        font-size: 18px;
+      }
+
+      form {
+        padding: 15px;
+      }
+
+      input, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      #loadingScreen img {
+        width: 60px;
+        height: 60px;
       }
     }
   </style>
@@ -128,7 +149,6 @@
     </form>
   </main>
 
-  <!-- فقط هنگام کلیک فعال می‌شود -->
   <div id="loadingScreen">
     <img src="Loading.gif" alt="Loading...">
   </div>
