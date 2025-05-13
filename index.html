@@ -168,7 +168,7 @@
           .then(data => {
             const name = document.getElementById('name').value.trim();
             const lastname = document.getElementById('lastname').value.trim();
-            const dob = document.getElementById('dob').value.trim();
+            const dob = document.getElementById('dob').value; // بدون trim برای date
             const clientno = document.getElementById('clientno').value.trim();
 
             document.getElementById('loadingScreen').style.display = 'none';
